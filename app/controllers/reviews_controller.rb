@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   
   before_filter :load_movie
+  before_filter :restrict_access
   # This acts as a callback - performs load_movie before anything
 
   def new
