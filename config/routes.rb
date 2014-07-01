@@ -1,35 +1,9 @@
 RottenMangoes::Application.routes.draw do
   resources :movies
 
-  validates :title,
-    presence: true
+  root to: 'movies#index' 
 
-  validates :director,
-    presence: true
 
-  validates :runtime_in_minutes,
-    numericality: { only_integer: true }
-
-  validates :description,
-    presence: true
-
-  validates :poster_image_url,
-    presence: true
-
-  validates :release_date,
-    presence: true
-
-  validate :release_date_is_in_the_future
-
-  protected
-
-  def release_date_is_in_the_future
-    if release_date.present?
-      errors.add(:release_date, "should probably be in the future") if release_date < Date.today
-    end
-  end
-
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
