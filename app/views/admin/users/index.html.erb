@@ -1,0 +1,6 @@
+<%= link_to "Back to all movies", movies_path %>
+
+<% @users.each do |user| %>
+  <h2><%= user.full_name %></h2>
+  <hr>
+<% end %>
