@@ -19,3 +19,4 @@ class Review < ActiveRecord::Base
     numericality: { less_than_or_equal_to: 10 }
     
 end
+ 
