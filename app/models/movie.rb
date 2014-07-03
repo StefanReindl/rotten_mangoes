@@ -27,6 +27,14 @@ class Movie < ActiveRecord::Base
     reviews.sum(:rating_out_of_ten)/reviews.size if reviews.any?
   end
 
+  def self.filter_by_title(title)
+    self.where("movies.title LIKE ?", "%#{title}%")
+  end
+
+  def self.filter_by_director(director)
+    self.where("movies.director LIKE ?", "%#{director}%")
+  end
+
   protected
 
   def release_date_is_in_the_future
