@@ -15,9 +15,6 @@ class Movie < ActiveRecord::Base
   validates :description,
     presence: true
 
-  validates :image,
-    presence: true
-
   validates :release_date,
     presence: true
 
@@ -33,6 +30,10 @@ class Movie < ActiveRecord::Base
 
   def self.filter_by_director(director)
     self.where("movies.director LIKE ?", "%#{director}%")
+  end
+
+  def self.filter_by_duration(duration)
+    self.where("movies.runtime_in_minutes = ?", "%#{duration}%")
   end
 
   protected
