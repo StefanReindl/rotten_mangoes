@@ -4,9 +4,7 @@
 
 <%= form_tag movies_path, method: :get do %>
 	Title: <%= text_field_tag :title, params[:title] %>
-
 	Director: <%= text_field_tag :director, params[:director] %>
-
 	Duration: <%= select_tag :duration, 
 		options_for_select({
 			'Any' => '0',
@@ -14,7 +12,6 @@
 			'Between 90 and 120 minutes' => '2',
 			'Over 120 minutes' => '3'
 			}, params[:duration]) %>
-	
 	<%= submit_tag 'Search' %>
 <% end %>
 
