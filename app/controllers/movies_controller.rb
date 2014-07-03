@@ -2,15 +2,16 @@ class MoviesController < ApplicationController
 	 
   def index
     @movies = Movie.all
-    if params[:title].present?
-      @movies = @movies.filter_by_title(params[:title])
-    end
-    if params[:director].present?
-      @movies = @movies.filter_by_director(params[:director])
-    end
+    # if params[:title].present?
+    #   @movies = @movies.filter_by_title(params[:title])
+    # end
+    # if params[:director].present?
+    #   @movies = @movies.filter_by_director(params[:director])
+    # end
+    @movies = @movies.filter_by_title(params[:title]).filter_by_director(params[:director])
     if params[:duration].present?
       @movies = @movies.filter_by_duration(params[:duration])
-    end  
+    end
   end
 
   def show
