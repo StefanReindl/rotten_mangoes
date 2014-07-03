@@ -3,8 +3,7 @@
 <hr>
 
 <%= form_tag movies_path, method: :get do %>
-	Title: <%= text_field_tag :title, params[:title] %>
-	Director: <%= text_field_tag :director, params[:director] %>
+	<%= text_field_tag :search, nil, placeholder: "Search" %>
 	Duration: <%= select_tag :duration, 
 		options_for_select({
 			'Any' => '0',

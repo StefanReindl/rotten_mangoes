@@ -20,14 +20,10 @@ class Movie < ActiveRecord::Base
 
   validate :release_date_is_in_the_future
 
-  scope :filter_by_title, -> (title) do
-    where(title: title)
-  end 
-
-  scope :filter_by_director, -> (director) do
-    where(director: director)
+  scope :search, -> (query) do
+    self.where("title LIKE :q or director LIKE :q", q: "%#{query}%")
   end
-   
+
   scope :filter_by_duration, -> (duration) do
     if duration == '0'
       self.all
@@ -39,7 +35,6 @@ class Movie < ActiveRecord::Base
       self.where("movies.runtime_in_minutes >= 120")
     end
   end
-
 
   def review_average
     reviews.sum(:rating_out_of_ten)/reviews.size if reviews.any?
