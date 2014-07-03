@@ -33,7 +33,15 @@ class Movie < ActiveRecord::Base
   end
 
   def self.filter_by_duration(duration)
-    self.where("movies.runtime_in_minutes = ?", "%#{duration}%")
+    if duration == '0'
+      self.all
+    elsif duration == '1'
+      self.where("movies.runtime_in_minutes <= 90")
+    elsif duration == '2'
+      self.where("movies.runtime_in_minutes BETWEEN 90 AND 120")
+    elsif duration == '3'
+      self.where("movies.runtime_in_minutes >= 120")
+    end
   end
 
   protected
