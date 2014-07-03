@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
  def new
     @user = User.new
+    UserMailer.test_email.deliver
   end
 
   def create
@@ -16,8 +17,12 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    user.destroy
-    redirect_to admin_users_path
+    UserMailer.delete_email(user).deliver
+    if user.destroy
+      redirect_to admin_users_path
+    else
+      redirect_to admin_users_path, notice: 'Could not delete user.'
+    end
   end
 
   protected
