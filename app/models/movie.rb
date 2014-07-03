@@ -27,7 +27,20 @@ class Movie < ActiveRecord::Base
   scope :filter_by_director, -> (director) do
     where(director: director)
   end
-    
+   
+  scope :filter_by_duration, -> (duration) do
+    if duration == '0'
+      self.all
+    elsif duration == '1'
+      self.where("movies.runtime_in_minutes <= 90")
+    elsif duration == '2'
+      self.where("movies.runtime_in_minutes BETWEEN 90 AND 120")
+    elsif duration == '3'
+      self.where("movies.runtime_in_minutes >= 120")
+    end
+  end
+
+
   def review_average
     reviews.sum(:rating_out_of_ten)/reviews.size if reviews.any?
   end
@@ -40,17 +53,6 @@ class Movie < ActiveRecord::Base
     self.where("movies.director LIKE ?", "%#{director}%")
   end
 
-  def self.filter_by_duration(duration)
-    if duration == '0'
-      self.all
-    elsif duration == '1'
-      self.where("movies.runtime_in_minutes <= 90")
-    elsif duration == '2'
-      self.where("movies.runtime_in_minutes BETWEEN 90 AND 120")
-    elsif duration == '3'
-      self.where("movies.runtime_in_minutes >= 120")
-    end
-  end
 
   protected
 
