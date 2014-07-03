@@ -2,10 +2,7 @@ class MoviesController < ApplicationController
 	 
   def index
     @movies = Movie.all
-    @movies = @movies.search(params[:search])
-    if params[:duration].present?
-      @movies = @movies.filter_by_duration(params[:duration])
-    end
+    @movies = @movies.search(params[:search]).filter_by_duration(params[:duration])
   end
 
   def show
