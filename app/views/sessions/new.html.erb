@@ -1,5 +1,5 @@
 <h1>Log In</h1>
-<%= form_tag sessions_path do %> <!-- we aren't instantiating an object here so we use 'form_tag' instead of 'form_for' -->
+<%= form_tag session_path do %> <!-- we aren't instantiating an object here so we use 'form_tag' instead of 'form_for' -->
   <div>
     <%= label_tag "email" %><br/>
     <%= text_field_tag "email" %>
