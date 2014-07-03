@@ -2,19 +2,20 @@
 
 <%= paginate @users %>
 
-
 <table style="width:600px">
 <tr>
   <th>Firstname</th>
   <th>Lastname</th> 
   <th>Email</th>
+  <th>Delete user</th>
 </tr>
 <tr>
 	<% @users.each do |user| %>
-  <td><%= user.firstname %></td>
-  <td><%= user.lastname %></td> 
-  <td><%= user.email %></td>
-  </tr>
+	  <td><%= user.firstname %></td>
+	  <td><%= user.lastname %></td> 
+	  <td><%= user.email %></td>
+	  
+   	<td><%= link_to "Delete", user_path(user), :method => :delete %></td></tr>
  	<% end %>
 
 </table>
